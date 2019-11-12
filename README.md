@@ -1,2 +1,2 @@
-# Development-Blog
-코린이의 개발 블로그 제작 프로젝트
+# Min's Development Blog
+> 개발 블로그를 제작하는 토이 프로젝트 입니다.
