@@ -211,7 +211,6 @@ modules.xml
 
 ### Java ###
 # Compiled class file
-*.class
 
 # Log file
 *.log
@@ -223,7 +222,6 @@ modules.xml
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -272,9 +270,7 @@ Temporary Items
 *.csr
 *.css
 *.htm
-*.html
 *.js
-*.jsp
 *.php
 *.rss
 *.wasm
