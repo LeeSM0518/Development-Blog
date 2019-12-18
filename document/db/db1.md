@@ -2,9 +2,9 @@
 
 ## ER 모델
 
-<img src="db1.png">
+<img src="../capture/db1.png">
 
 ## ER 모델 구체화
 
-<img src="db1_1.png">
+<img src="../capture/db1_1.png">
 
