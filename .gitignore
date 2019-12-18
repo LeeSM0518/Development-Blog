@@ -276,5 +276,5 @@ Temporary Items
 *.wasm
 *.wat
 *.xhtml
-
+*.properties
 # End of https://www.gitignore.io/api/git,web,java,macos,java-web,intellij,intellij+all,intellij+iml
