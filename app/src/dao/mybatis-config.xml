@@ -22,7 +22,7 @@
     </environments>
 
     <mappers>
-
+        <mapper resource="dao/PostgresSqlMemberDao.xml"/>
     </mappers>
 
 </configuration>
