@@ -1,32 +1,43 @@
 # 1차 API 설계
 
-전체조회, 삽입 /category
+## 카테고리(Category)
 
-개인조회, 업데이트, 딜리트/category/{category-id}
+* **/categories**
+  * 카테고리 삽입
+  * 모든 카테고리의 글 조회
+
+* **/categories/{category-id}**
+  * 해당 카테고리 id의 글 조회
+  * 해당 카테고리 id의 카테고리 삭제
+  * 해당 카테고리 id의 카테고리 수정
+
+<br>
+
+## 글(Post)
+
+* **/category/{category-id}/posts**
+  * 해당 카테고리에 글 삽입
+* **/category/{category-id}/posts/{post-id}**
+  * 해당 카레고리 id의 해당 글 id를 조회
+    * 해당 카테고리 id의 해당 글 id의 댓글 조회
+  * 해당 카테고리 id의 해당 글 id를 삭제
+  * 해당 카테고리 id의 해당 글 id를 수정
+
+## 댓글(Comment)
+
+* **/category/{category-id}/posts/{post-id}/comment**
+  * 해당 글 id의 댓글 추가
+* **/category/{category-id}/posts/{post-id}/comment/{comment-id}**
+  * 해당 글 id의 댓글 삭제
 
 <br>
 
 ## 로그인: /auth/login
 
-* 로그인(/auth/login)
-  * post 요청
+* 로그인 요청
 
 <br>
 
-## 카테고리: /categories/{category-id}
+## 로그아웃: /auth/logout
 
-* **category-id**
-  * Main 카테고리는 전체 글 조회
-  * Main 이외의 카테고리는 해당 카테고리의 글 조회
-
-<br>
-
-## 글: /categories/{category-id}/posts/{post-id}
-
-* **post-id**
-  * 해당 post-id로 글 조회
-  * 해당 post-id를 이용하여 댓글(coment)을 조회
-
-<br>
-
-## 글 작성: 
+* 로그아웃 요청
