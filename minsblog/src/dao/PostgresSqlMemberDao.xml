@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--태그 규칙을 정의한 DTD 선언-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.MemberDao">
+    <resultMap id="memberResultMap" type="member">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="name" property="name"/>
+        <result column="authority" property="authority"/>
+    </resultMap>
+
+    <select id="selectList" parameterType="map" resultMap="memberResultMap">
+        select *
+        from member
+    </select>
+
+    <select id="exist" parameterType="map" resultMap="memberResultMap">
+        select *
+        from member
+        where username=#{username} and password=#{password}
+    </select>
+</mapper>
