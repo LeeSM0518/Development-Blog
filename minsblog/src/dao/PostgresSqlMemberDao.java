@@ -1,5 +1,6 @@
 package dao;
 
+import annotation.Component;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import vo.Member;
@@ -7,6 +8,7 @@ import vo.Member;
 import java.util.HashMap;
 import java.util.List;
 
+@Component("memberDao")
 public class PostgresSqlMemberDao implements MemberDao {
 
   SqlSessionFactory sqlSessionFactory;

@@ -14,12 +14,12 @@
     </resultMap>
 
     <select id="selectList" parameterType="map" resultMap="memberResultMap">
-        select *
+        select id, username, password, name, authority
         from member
     </select>
 
     <select id="exist" parameterType="map" resultMap="memberResultMap">
-        select *
+        select id, username, password, name, authority
         from member
         where username=#{username} and password=#{password}
     </select>
