@@ -10,6 +10,7 @@
 
     <typeAliases>
         <typeAlias type="vo.Member" alias="member"/>
+        <typeAlias type="vo.Category" alias="category"/>
     </typeAliases>
 
     <environments default="development">
@@ -23,6 +24,7 @@
 
     <mappers>
         <mapper resource="dao/PostgresSqlMemberDao.xml"/>
+        <mapper resource="dao/PostgresSqlCategoryDao.xml"/>
     </mappers>
 
 </configuration>

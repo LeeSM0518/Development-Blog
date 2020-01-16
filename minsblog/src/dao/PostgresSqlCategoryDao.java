@@ -8,7 +8,7 @@ import vo.Category;
 import java.util.HashMap;
 import java.util.List;
 
-@Component("CategoryDao")
+@Component("categoryDao")
 public class PostgresSqlCategoryDao implements CategoryDao {
 
   SqlSessionFactory sqlSessionFactory;
