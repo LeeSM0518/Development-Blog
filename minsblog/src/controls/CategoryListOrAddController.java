@@ -5,6 +5,7 @@ import bind.DataBinding;
 import dao.PostgresSqlCategoryDao;
 import vo.Category;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,10 +21,10 @@ public class CategoryListOrAddController implements DataBinding, Controller {
   @Override
   public String execute(Map<String, Object> model) throws Exception {
     HashMap<String, Object> paramMap = new HashMap<>();
+    HttpSession session = (HttpSession) model.get("session");
     // 아직은 paramMap이 사용되지는 않음
     model.put("category", categoryDao.selectList(paramMap));
-    // TODO return 구현해야함
-    return null;
+    return "/home/home.jsp";
   }
 
   @Override
