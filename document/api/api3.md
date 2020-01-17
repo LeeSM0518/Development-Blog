@@ -1,8 +1,8 @@
-# 2차 API 설계
+# 3차 API 설계
 
 ## 카테고리(Category)
 
-* **/category/list.do?id={category-id}**
+* **/category/list.do?cid={category-id}**
   * 해당 카테고리 글 조회
   * 모든 카테고리의 글 조회
 
