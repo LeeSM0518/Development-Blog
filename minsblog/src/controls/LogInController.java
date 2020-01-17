@@ -28,9 +28,9 @@ public class LogInController implements Controller, DataBinding {
       Member existMember = memberDao.exist(member.getUsername(), member.getPassword());
       if (existMember != null) {
         ((HttpSession) model.get("session"))
-            .setAttribute("member", existMember);
+            .setAttribute("adminMember", existMember);
         // TODO 메인 화면으로 경로 변경 필요
-        return "redirect:#";
+        return "redirect:/category/list.do?cid=Main";
       } else {
         // TODO 추후에 경로 변경 필요
         return "/startbootstrap-sb-admin-2-gh-pages/LogInFail.jsp";
