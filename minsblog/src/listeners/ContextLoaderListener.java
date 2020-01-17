@@ -32,7 +32,6 @@ public class ContextLoaderListener implements ServletContextListener {
           new SqlSessionFactoryBuilder().build(inputStream);
 
       applicationContext.addBean("sqlSessionFactory", sqlSessionFactory);
-
       ServletContext sc = sce.getServletContext();
       sc.setRequestCharacterEncoding("UTF-8");
 
