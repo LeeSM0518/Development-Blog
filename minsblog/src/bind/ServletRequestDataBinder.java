@@ -47,6 +47,8 @@ public class ServletRequestDataBinder {
       return Double.valueOf(value);
     } else if (type.getName().equals("long") || type == Long.class) {
       return Long.valueOf(value);
+    } else if (type.getName().equals("boolean") || type == Boolean.class) {
+      return Boolean.valueOf(value);
     } else if (type == Date.class) {
       return java.sql.Date.valueOf(value);
     } else {
