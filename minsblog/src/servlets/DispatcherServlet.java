@@ -54,7 +54,7 @@ public class DispatcherServlet extends HttpServlet {
     } catch (Exception e) {
       e.printStackTrace();
       req.setAttribute("error", e);
-      RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
+      RequestDispatcher rd = req.getRequestDispatcher("/startbootstrap-sb-admin-2-gh-pages/error.jsp");
       rd.forward(req, resp);
     }
   }
@@ -62,10 +62,13 @@ public class DispatcherServlet extends HttpServlet {
   private void prepareRequestData(HttpServletRequest request, HashMap<String, Object> model,
                                   DataBinding dataBinding) throws Exception {
     Object[] dataBinders = dataBinding.getDataBinders();
+    String dataName;
+    Class<?> dataType;
+    Object dataObj;
     for (int i = 0; i < dataBinders.length; i += 2) {
-      String dataName = (String) dataBinders[i];
-      Class<?> dataType = (Class<?>) dataBinders[i+1];
-      Object dataObj = ServletRequestDataBinder.bind(request, dataType, dataName);
+      dataName = (String) dataBinders[i];
+      dataType = (Class<?>) dataBinders[i+1];
+      dataObj = ServletRequestDataBinder.bind(request, dataType, dataName);
       model.put(dataName, dataObj);
     }
   }
