@@ -34,9 +34,9 @@ public class PostgresSqlCategoryDao implements CategoryDao {
   }
 
   @Override
-  public int delete(int id) throws Exception {
+  public int delete(Category category) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      int count = sqlSession.delete("dao.CategoryDao.delete", id);
+      int count = sqlSession.delete("dao.CategoryDao.delete", category);
       sqlSession.commit();
       return count;
     }
@@ -50,9 +50,9 @@ public class PostgresSqlCategoryDao implements CategoryDao {
   }
 
   @Override
-  public int update(Category category) throws Exception {
+  public int update(HashMap<String, Object> paramMap) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      int count = sqlSession.update("dao.CategoryDao.update", category);
+      int count = sqlSession.update("dao.CategoryDao.update", paramMap);
       sqlSession.commit();
       return count;
     }

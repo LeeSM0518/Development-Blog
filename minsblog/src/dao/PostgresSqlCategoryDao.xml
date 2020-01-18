@@ -16,8 +16,8 @@
     </select>
 
     <insert id="insert" parameterType="category">
-        insert into category(id, name)
-        values (#{id}, #{name})
+        insert into category (id, name)
+        values (DEFAULT, #{name})
     </insert>
 
     <select id="selectOne" parameterType="int" resultMap="categoryResultMap">
@@ -26,15 +26,15 @@
         where id=#{value}
     </select>
 
-    <update id="update" parameterType="category">
+    <update id="update" parameterType="map">
         update category
-        set name=#{name}
-        where id=#{id}
+        set name=#{changeName}
+        where name=#{beforeName}
     </update>
 
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="category">
         delete from category
-        where id=#{value}
+        where name=#{name}
     </delete>
 
 </mapper>
