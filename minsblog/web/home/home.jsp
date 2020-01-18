@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="ko">
 
 <head>
@@ -15,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>Min's TIL Blog</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/home/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,19 +42,26 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/home.do">Home
+                    <a class="nav-link" href="/category/list.do?cid=Main">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Log in (Log out)</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sign up</a>
-                </li>
+                <c:if test="${empty sessionScope.adminMember}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/login.do">Log in</a>
+                    </li>
+                </c:if>
+                <c:if test="${!empty sessionScope.adminMember}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/logout.do">Log out</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/join.do">Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/myinfo.do">My Info</a>
+                    </li>
+                </c:if>
             </ul>
         </div>
     </div>
@@ -140,66 +148,70 @@
                                     <a href="#">Tutorials</a>
                                 </li>
                             </ul>
-                            <hr>
-                            <div class="dropdown">
-                                <button class="btn btn-success" type="button" id="createCategoryButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Create Category
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="createCategoryButton">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Category...">
-                                        <span class="input-group-btn">
+                            <c:if test="${!empty sessionScope.adminMember}">
+
+                                <hr>
+                                <div class="dropdown">
+                                    <button class="btn btn-success" type="button" id="createCategoryButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Create Category
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="createCategoryButton">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Category...">
+                                            <span class="input-group-btn">
                 <button class="btn btn-secondary" type="button">Create!</button>
               </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p></p>
-                            <div class="dropdown">
-                                <button class="btn btn-danger" type="button" id="deleteCategoryButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Delete Category
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="deleteCategoryButton">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Category...">
-                                        <span class="input-group-btn">
+                                <p></p>
+                                <div class="dropdown">
+                                    <button class="btn btn-danger" type="button" id="deleteCategoryButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Delete Category
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="deleteCategoryButton">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Category...">
+                                            <span class="input-group-btn">
                 <button class="btn btn-secondary" type="button">Delete!</button>
               </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p></p>
-                            <div class="dropdown">
-                                <button class="btn btn-info" type="button" id="adjustCategoryButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Adjust Category
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="adjustCategoryButton">
-                                    <div class="input-group">
-                                        <p>
+                                <p></p>
+                                <div class="dropdown">
+                                    <button class="btn btn-info" type="button" id="adjustCategoryButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Adjust Category
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="adjustCategoryButton">
+                                        <div class="input-group">
+                                            <p>
+                                                <input type="text" class="form-control" placeholder="Category...">
+                                            </p>
                                             <input type="text" class="form-control" placeholder="Category...">
-                                        </p>
-                                        <input type="text" class="form-control" placeholder="Category...">
-                                        <span class="input-group-btn">
+                                            <span class="input-group-btn">
                 <button class="btn btn-secondary" type="button">Adjust!</button>
               </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </c:if>
                         </div>
                     </div>
 
                 </div>
             </div>
-            <!-- Side Widget -->
+            <c:if test="${!empty sessionScope.adminMember}">
             <div class="card my-4">
                 <h5 class="card-header">Side Widget</h5>
                 <div class="card-body">
                     <a href="#" class="btn btn-primary">Write Post &rarr;</a>
                 </div>
             </div>
+            </c:if>
 
         </div>
 
