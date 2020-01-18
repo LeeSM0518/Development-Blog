@@ -34,4 +34,30 @@ public class PostgresSqlMemberDao implements MemberDao {
       return sqlSession.selectOne("dao.MemberDao.exist", paramMap);
     }
   }
+
+  @Override
+  public int insert(Member member) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      int count = sqlSession.insert("dao.MemberDao.insert", member);
+      sqlSession.commit();
+      return count;
+    }
+  }
+
+  @Override
+  public Member selectOne(int id) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("dao.MemberDao.selectOne", id);
+    }
+  }
+
+  @Override
+  public int update(Member member) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      int count = sqlSession.update("dao.MemberDao.update", member);
+      sqlSession.commit();
+      return count;
+    }
+  }
+
 }
