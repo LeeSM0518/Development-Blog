@@ -6,7 +6,7 @@ public class Member {
   String username;
   String password;
   String name;
-  String authority;
+  Authority authority;
 
   public int getId() {
     return id;
@@ -44,11 +44,11 @@ public class Member {
     return this;
   }
 
-  public String getAuthority() {
+  public Authority getAuthority() {
     return authority;
   }
 
-  public Member setAuthority(String authority) {
+  public Member setAuthority(Authority authority) {
     this.authority = authority;
     return this;
   }
