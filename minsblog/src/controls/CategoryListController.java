@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component("/category/list.do")
-public class CategoryListOrAddController implements DataBinding, Controller {
+public class CategoryListController implements DataBinding, Controller {
 
   PostgresSqlCategoryDao categoryDao;
 
@@ -26,14 +26,14 @@ public class CategoryListOrAddController implements DataBinding, Controller {
     // TODO 카테고리가 Main 일때와 아닐때로 구분 필요
     // TODO Post mapper 파일에 카테고리 id로 부터 해당 글을 불러오는 조인 쿼리 추가 해야함
     // 아직은 paramMap이 사용되지는 않음
-    model.put("category", categoryDao.selectList(paramMap));
+    model.put("categories", categoryDao.selectList(paramMap));
     return "/home/home.jsp";
   }
 
   @Override
   public Object[] getDataBinders() {
     return new Object[] {
-        "Category", Category.class
+        "category", Category.class
     };
   }
 
