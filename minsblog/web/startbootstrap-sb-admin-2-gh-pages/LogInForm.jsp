@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +66,7 @@
                                                name="password" placeholder="Password">
                                     </div>
                                     <input type="submit" value="관리자 로그인" class="btn btn-primary btn-user btn-block">
-                                    <a href="#" class="btn btn-facebook btn-user btn-block">
+                                    <a href="<%=request.getContextPath()%>/category/list.do?cid=Main" class="btn btn-facebook btn-user btn-block">
                                         방문자 로그인
                                     </a>
                                 </form>
