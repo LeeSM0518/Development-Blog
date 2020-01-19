@@ -22,12 +22,9 @@
 </head>
 <body id="toplevel">
 <div id="in">
-    <form><textarea id="code"># New Document</textarea></form>
+    <form id="context" method="post" action="add.do"><textarea id="code" name="contextArea"># New Document</textarea></form>
 </div>
-<form id="context" method="post" action="add.do">
-    <input id="returnContext" name="returnContext" type="text">
-    <div id="out" name="context" class="markdown-body"></div>
-</form>
+<div id="out" class="markdown-body"></div>
 <div id="menu">
     <span>Save As</span>
     <div id="saveas-markdown">
@@ -61,10 +58,7 @@
 </div>
 <script>
     var save = document.getElementById('browsersavebutton');
-    save.onclick = function (){
-        document.getElementById('context').submit();
-        var out = document.getElementById('out');
-        document.getElementById('returnContext').value = out.value;
+    save.onclick = function () {
         document.getElementById('context').submit();
     }
 </script>
