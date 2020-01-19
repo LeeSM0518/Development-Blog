@@ -9,14 +9,12 @@ import java.util.Map;
 public class PostAddController implements Controller, DataBinding {
   @Override
   public String execute(Map<String, Object> model) throws Exception {
-    // TODO WritePost.jsp 와 컨트롤러 수정 필요
-    // TODO WritePost.jsp 에서 post로 markdown 데이터 전송 방법 생각
-    String out = (String) model.get("returnContext");
-    System.out.println(model);
+    String out = (String) model.get("contextArea");
+    // TODO 글 쓰는 jsp 파일에서 제목과 카테고리를 반드시 쓰도록 설정
     if (out == null) {
       return "/main/WritePost.jsp";
     } else {
-      System.out.println((String) model.get("returnContext"));
+      System.out.println(out);
       return "redirect:/category/list.do?cid=Main";
     }
   }
@@ -24,8 +22,7 @@ public class PostAddController implements Controller, DataBinding {
   @Override
   public Object[] getDataBinders() {
     return new Object[] {
-        "returnContext", String.class,
-        "context", String.class
+        "contextArea", String.class,
     };
   }
 }
