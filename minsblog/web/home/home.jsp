@@ -202,7 +202,7 @@
                 <div class="card my-4">
                     <h5 class="card-header">Side Widget</h5>
                     <div class="card-body">
-                        <a href="#" class="btn btn-primary">Write Post &rarr;</a>
+                        <a href="/post/add.do" class="btn btn-primary">Write Post &rarr;</a>
                     </div>
                 </div>
             </c:if>
