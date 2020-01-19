@@ -16,7 +16,10 @@
 <div id="in">
     <form><textarea id="code"># New Document</textarea></form>
 </div>
+    <form id="context" method="post" action="/post/add.do">
+        <input id="returnContext" type="text">
 <div id="out" class="markdown-body"></div>
+        </form>
 <div id="menu">
     <span>Save As</span>
     <div id="saveas-markdown">
@@ -42,13 +45,21 @@
         <a id="logo" href="https://github.com/jbt/markdown-editor" tooltip="Check out the code on Github!">
             <p id="title" class="left">Min's Blog</p>
         </a>
-        <p id="browsersavebutton" title="Browser Save (Experimental)" class="navbutton left"><a href="#"><i
+        <p id="browsersavebutton" title="Browser Save (Experimental)" class="navbutton left"><a><i
                 style="color: aliceblue" class="material-icons">save</i></a></p>
         <p id="sharebutton" title="Generate Shareable Link" class="navbutton left"><a href="#"><i
                 style="color: aliceblue" class="material-icons">cancel</i></a></p>
         <p id="sharebutton" class="navbutton left selected hidden">Share</p>
     </div>
 </div>
+<script>
+        var save = document.getElementById('browsersavebutton');
+    save.onclick = function (){ 
+        var out = document.getElementById('out');
+        document.getElementById('returnContext').value = out.value;
+        document.getElementById('context').submit();
+    }
+    </script>
 <script src="lib/markdown-it.js"></script>
 <script src="lib/markdown-it-footnote.js"></script>
 <script src="lib/highlight.pack.js"></script>
