@@ -19,8 +19,6 @@
 
 * **/post/read.do?id={post-id}**
   * 해당 글 조회
-* **/post/write.do**
-  * 글 작성 페이지 (글 추가 & 수정)
 * **/post/add.do**
   * 글 추가
 * **/post/update.do**
