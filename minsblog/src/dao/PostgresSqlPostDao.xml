@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--태그 규칙을 정의한 DTD 선언-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.PostDao">
+    <resultMap id="postResultMap" type="post">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="author" property="author"/>
+        <result column="date" property="date" javaType="java.sql.Date"/>
+        <result column="content" property="content"/>
+        <result column="categoryId" property="categoryId"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="post">
+        insert into post (id, title, author, date, content, category_id)
+        values (DEFAULT, #{title}, #{author}, now(), #{content}, #{categoryId})
+    </insert>
+
+    <select id="selectList" resultMap="postResultMap">
+        select id, title, author, date, content, category_id
+        from post
+        order by desc
+    </select>
+
+    <select id="selectOne" parameterType="int" resultMap="postResultMap">
+        select id, title, author, date, content, category_id
+        from post
+        where id=#{value}
+    </select>
+
+    <update id="update" parameterType="post">
+        update post
+        set title=#{title}, author=#{author}, date=now(), content=#{content}, category_id=#{categoryId}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from post
+        where id=#{value}
+    </delete>
+
+</mapper>
