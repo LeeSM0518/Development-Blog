@@ -25,7 +25,7 @@ public class CategoryUpdateController implements DataBinding, Controller {
         "changeName", String.class
     };
   }
-  
+
   @Override
   public String execute(Map<String, Object> model) throws Exception {
     HashMap<String, Object> paramMap = new HashMap<>();
