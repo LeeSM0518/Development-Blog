@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: sangminlee
@@ -19,10 +20,40 @@
     <link rel="stylesheet" href="/main/lib/spell-checker.min.css">
     <link rel="stylesheet" href="/main/lib/sweetalert.css">
     <link rel="stylesheet" href="/main/index.css">
+    <!-- Custom styles for this template -->
+    <link href="/main/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="/main/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script>
+        function setValue(target) {
+            document.getElementById('categoryButtonId').innerHTML = target.innerHTML;
+        }
+    </script>
+    <script>
+        window.onload = function () {
+            var savebutton = document.getElementById('browsersavebutton');
+            savebutton.onclick = function () {
+                if (document.getElementById('titleInputId').value === '') {
+                    alert('제목을 반드시 입력해주세요.');
+                } else if (document.getElementById('categoryButtonId').innerHTML === 'Category') {
+                    alert('카테고리를 반드시 선택해주세요.');
+                } else {
+                    document.getElementById('titleId').value = document.getElementById('titleInputId').value;
+                    document.getElementById('categoryId').value = document.getElementById('categoryButtonId').innerHTML;
+                    document.getElementById('context').submit();
+                }
+            }
+        };
+    </script>
 </head>
 <body id="toplevel">
 <div id="in">
-    <form id="context" method="post" action="add.do"><textarea id="code" name="contextArea"># New Document</textarea></form>
+    <form id="context" method="post" action="add.do">
+        <textarea id="code" name="content"># New Document</textarea>
+        <input id="titleId" name="title" type="text">
+        <input id="categoryId" name="name" type="text">
+    </form>
 </div>
 <div id="out" class="markdown-body"></div>
 <div id="menu">
@@ -47,21 +78,34 @@
 </div>
 <div id="navbar">
     <div id="navcontent">
-        <a id="logo" href="https://github.com/jbt/markdown-editor" tooltip="Check out the code on Github!">
+        <a id="logo" href="${pageContext.request.contextPath}/category/list.do?cid=Main"
+           tooltip="Check out the code on Github!">
             <p id="title" class="left">Min's Blog</p>
         </a>
         <p id="browsersavebutton" title="Browser Save (Experimental)" class="navbutton left"><a><i
                 style="color: aliceblue" class="material-icons">save</i></a></p>
-        <p id="sharebutton" title="Generate Shareable Link" class="navbutton left"><a href="#"><i
+        <p id="sharebutton" title="Generate Shareable Link" class="navbutton left"><a
+                href="${pageContext.request.contextPath}/category/list.do?cid=Main"><i
                 style="color: aliceblue" class="material-icons">cancel</i></a></p>
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-1 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input id="titleInputId" type="text" class="form-control bg-light border-30small" placeholder="제목"
+                       aria-label="Search"
+                       aria-describedby="basic-addon2">
+                <button id="categoryButtonId" class="btn btn-primary dropdown-toggle" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
+                <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                    <c:forEach var="category" items="${categories}">
+                        <a class="dropdown-item" onclick="setValue(this);">${category.name}</a>
+                    </c:forEach>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-<script>
-    var save = document.getElementById('browsersavebutton');
-    save.onclick = function () {
-        document.getElementById('context').submit();
-    }
-</script>
+<script src="/main/vendor/jquery/jquery.min.js"></script>
+<script src="/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/main/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/main/lib/markdown-it.js"></script>
 <script src="/main/lib/markdown-it-footnote.js"></script>
 <script src="/main/lib/highlight.pack.js"></script>
