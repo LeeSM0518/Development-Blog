@@ -18,7 +18,7 @@ public class PostgresSqlCategoryDao implements CategoryDao {
   }
 
   @Override
-  public List<Category> selectList(HashMap<String, Object> paramMap) throws Exception {
+  public List<Category> selectList() throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.selectList("dao.CategoryDao.selectList");
     }
@@ -43,9 +43,9 @@ public class PostgresSqlCategoryDao implements CategoryDao {
   }
 
   @Override
-  public Category selectOne(int id) throws Exception {
+  public Category selectOne(Category category) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectOne("dao.CategoryDao.selectOne", id);
+      return sqlSession.selectOne("dao.CategoryDao.selectOne", category);
     }
   }
 

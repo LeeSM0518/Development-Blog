@@ -10,7 +10,7 @@
         <result column="name" property="name"/>
     </resultMap>
 
-    <select id="selectList" parameterType="map" resultMap="categoryResultMap">
+    <select id="selectList" resultMap="categoryResultMap">
         select id, name
         from category
     </select>
@@ -20,10 +20,10 @@
         values (DEFAULT, #{name})
     </insert>
 
-    <select id="selectOne" parameterType="int" resultMap="categoryResultMap">
+    <select id="selectOne" parameterType="category" resultMap="categoryResultMap">
         select id, name
         from category
-        where id=#{value}
+        where name=#{name}
     </select>
 
     <update id="update" parameterType="map">
