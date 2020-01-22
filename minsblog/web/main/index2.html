@@ -20,6 +20,14 @@
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script type="text/javascript">
+    var save = document.getElementById('browsersavebutton');
+    save.onclick = function () {
+        var out = document.getElementById('out');
+        document.getElementById('returnContext').value = out.value;
+        document.getElementById('context').submit();
+    }
+    </script>
 </head>
 <body id="toplevel">
 <div id="in">
@@ -53,7 +61,7 @@
 
 <div id="navbar">
     <div id="navcontent">
-        <a id="logo" href="https://github.com/jbt/markdown-editor" tooltip="Check out the code on Github!">
+        <a id="logo" href="/category/list.do?cid=Main" tooltip="Check out the code on Github!">
             <p id="title" class="left">Min's Blog</p>
         </a>
         <!-- TODO 제목을 쓸 수 있는 길이를 키우고 데이터를 어떻게 보낼지 고민 필요 -->
@@ -66,28 +74,20 @@
             <div class="input-group">
                 <input type="text" class="form-control bg-light border-30small" placeholder="제목" aria-label="Search"
                        aria-describedby="basic-addon2">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                <button id="categoryButtonId" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Category
                 </button>
                 <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" onclick="setValue(this);" >Action</a>
+                    <a id="2" class="dropdown-item" href="#">Another action</a>
+                    <a id="3" class="dropdown-item" href="#">Something else here</a>
                 </div>
             </div>
         </form>
 
     </div>
 </div>
-<script>
-    var save = document.getElementById('browsersavebutton');
-    save.onclick = function () {
-        var out = document.getElementById('out');
-        document.getElementById('returnContext').value = out.value;
-        document.getElementById('context').submit();
-    }
-</script>
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
