@@ -22,13 +22,19 @@
     <select id="selectList" resultMap="postResultMap">
         select id, title, author, date, content, category_id
         from post
-        order by desc
+        order by date desc
     </select>
 
     <select id="selectOne" parameterType="int" resultMap="postResultMap">
         select id, title, author, date, content, category_id
         from post
         where id=#{value}
+    </select>
+
+    <select id="selectListByCategoryId" parameterType="int" resultMap="postResultMap">
+        select id, title, author, date, content, category_id
+        from post
+        where category_id=#{value}
     </select>
 
     <update id="update" parameterType="post">

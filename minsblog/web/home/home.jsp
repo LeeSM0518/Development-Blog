@@ -79,17 +79,17 @@
                 <small></small>
             </h1>
 
-            <!-- Blog Post -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h2 class="card-title">Post Title</h2>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
+            <c:forEach var="post" items="${posts}">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">${post.title}</h2>
+                        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on ${post.date}
+                    </div>
                 </div>
-                <div class="card-footer text-muted">
-                    Posted on January 1, 2017 by
-                    <a href="#">Start Bootstrap</a>
-                </div>
-            </div>
+            </c:forEach>
 
             <!-- Pagination -->
             <ul class="pagination justify-content-center mb-4">
@@ -128,7 +128,7 @@
                             <ul class="list-unstyled mb-0">
                                 <c:forEach var="category" items="${categories}">
                                     <li>
-                                        <a href="#">${category.name}</a>
+                                        <a href="${pageContext.request.contextPath}/category/list.do?cid=${category.name}">${category.name}</a>
                                     </li>
                                 </c:forEach>
                             </ul>

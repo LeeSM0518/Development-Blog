@@ -11,15 +11,33 @@
     <link rel="stylesheet" href="lib/spell-checker.min.css">
     <link rel="stylesheet" href="lib/sweetalert.css">
     <link rel="stylesheet" href="index.css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script type="text/javascript">
+    var save = document.getElementById('browsersavebutton');
+    save.onclick = function () {
+        var out = document.getElementById('out');
+        document.getElementById('returnContext').value = out.value;
+        document.getElementById('context').submit();
+    }
+    </script>
 </head>
 <body id="toplevel">
 <div id="in">
     <form><textarea id="code"># New Document</textarea></form>
 </div>
-    <form id="context" method="post" action="/post/add.do">
-        <input id="returnContext" type="text">
-<div id="out" class="markdown-body"></div>
-        </form>
+<form id="context" method="post" action="/post/add.do">
+    <input id="returnContext" type="text">
+    <div id="out" class="markdown-body"></div>
+</form>
+
 <div id="menu">
     <span>Save As</span>
     <div id="saveas-markdown">
@@ -40,26 +58,44 @@
     </div>
     <a id="close-menu">&times;</a>
 </div>
+
 <div id="navbar">
     <div id="navcontent">
-        <a id="logo" href="https://github.com/jbt/markdown-editor" tooltip="Check out the code on Github!">
+        <a id="logo" href="/category/list.do?cid=Main" tooltip="Check out the code on Github!">
             <p id="title" class="left">Min's Blog</p>
         </a>
+        <!-- TODO 제목을 쓸 수 있는 길이를 키우고 데이터를 어떻게 보낼지 고민 필요 -->
         <p id="browsersavebutton" title="Browser Save (Experimental)" class="navbutton left"><a><i
                 style="color: aliceblue" class="material-icons">save</i></a></p>
         <p id="sharebutton" title="Generate Shareable Link" class="navbutton left"><a href="#"><i
                 style="color: aliceblue" class="material-icons">cancel</i></a></p>
-        <p id="sharebutton" class="navbutton left selected hidden">Share</p>
+        <p id="sharebutton2" class="navbutton left selected hidden">Share</p>
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-1 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-30small" placeholder="제목" aria-label="Search"
+                       aria-describedby="basic-addon2">
+                <button id="categoryButtonId" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Category
+                </button>
+                <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" onclick="setValue(this);" >Action</a>
+                    <a id="2" class="dropdown-item" href="#">Another action</a>
+                    <a id="3" class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </form>
+
     </div>
 </div>
-<script>
-        var save = document.getElementById('browsersavebutton');
-    save.onclick = function (){ 
-        var out = document.getElementById('out');
-        document.getElementById('returnContext').value = out.value;
-        document.getElementById('context').submit();
-    }
-    </script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
 <script src="lib/markdown-it.js"></script>
 <script src="lib/markdown-it-footnote.js"></script>
 <script src="lib/highlight.pack.js"></script>

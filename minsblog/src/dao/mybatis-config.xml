@@ -11,6 +11,8 @@
     <typeAliases>
         <typeAlias type="vo.Member" alias="member"/>
         <typeAlias type="vo.Category" alias="category"/>
+        <typeAlias type="vo.Post" alias="post"/>
+        <typeAlias type="vo.Comment" alias="comment"/>
     </typeAliases>
 
     <environments default="development">
@@ -25,6 +27,7 @@
     <mappers>
         <mapper resource="dao/PostgresSqlMemberDao.xml"/>
         <mapper resource="dao/PostgresSqlCategoryDao.xml"/>
+        <mapper resource="dao/PostgresSqlPostDao.xml"/>
     </mappers>
 
 </configuration>

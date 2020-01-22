@@ -11,6 +11,18 @@ public class Post {
   String content;
   int categoryId;
 
+  @Override
+  public String toString() {
+    return "Post{" +
+            "id=" + id +
+            ", title='" + title + '\'' +
+            ", author=" + author +
+            ", date=" + date +
+            ", content='" + content + '\'' +
+            ", categoryId=" + categoryId +
+            '}';
+  }
+
   public int getId() {
     return id;
   }
