@@ -24,6 +24,13 @@ public class PostgresSqlPostDao implements PostDao {
   }
 
   @Override
+  public List<Post> selectListByCategoryId(int categoryId) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("dao.PostDao.selectListByCategoryId", categoryId);
+    }
+  }
+
+  @Override
   public int selectOne(int id) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.selectOne("dao.PostDao.selectOne", id);
