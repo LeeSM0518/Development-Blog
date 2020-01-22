@@ -33,21 +33,27 @@ public class PostgresSqlPostDao implements PostDao {
   @Override
   public int insert(Post post) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.insert("dao.PostDao.insert", post);
+      int count = sqlSession.insert("dao.PostDao.insert", post);
+      sqlSession.commit();
+      return count;
     }
   }
 
   @Override
   public int update(Post post) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.update("dao.PostDao.update", post);
+      int count = sqlSession.update("dao.PostDao.update", post);
+      sqlSession.commit();
+      return count;
     }
   }
 
   @Override
   public int delete(int id) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.delete("dao.PostDao.delete", id);
+      int count = sqlSession.delete("dao.PostDao.delete", id);
+      sqlSession.commit();
+      return count;
     }
   }
 
