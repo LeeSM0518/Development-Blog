@@ -41,6 +41,7 @@
                 } else {
                     document.getElementById('titleId').value = document.getElementById('titleInputId').value;
                     document.getElementById('categoryId').value = document.getElementById('categoryButtonId').innerHTML;
+                    document.getElementById('contentId').value = document.getElementById('out').innerHTML;
                     document.getElementById('context').submit();
                 }
             }
@@ -48,12 +49,13 @@
     </script>
 </head>
 <body id="toplevel">
+<form id="context" method="post" action="add.do">
+    <input id="titleId" name="title" type="hidden">
+    <input id="categoryId" name="name" type="hidden">
+    <input id="contentId" name="content" type="hidden">
+</form>
 <div id="in">
-    <form id="context" method="post" action="add.do">
-        <textarea id="code" name="content"># New Document</textarea>
-        <input id="titleId" name="title" type="text">
-        <input id="categoryId" name="name" type="text">
-    </form>
+    <textarea id="code" name="content"># New Document</textarea>
 </div>
 <div id="out" class="markdown-body"></div>
 <div id="menu">
@@ -93,7 +95,8 @@
                        aria-label="Search"
                        aria-describedby="basic-addon2">
                 <button id="categoryButtonId" class="btn btn-primary dropdown-toggle" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category
+                </button>
                 <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                     <c:forEach var="category" items="${categories}">
                         <a class="dropdown-item" onclick="setValue(this);">${category.name}</a>
