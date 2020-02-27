@@ -31,7 +31,7 @@ public class PostgresSqlPostDao implements PostDao {
   }
 
   @Override
-  public int selectOne(int id) throws Exception {
+  public Post selectOne(int id) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.selectOne("dao.PostDao.selectOne", id);
     }

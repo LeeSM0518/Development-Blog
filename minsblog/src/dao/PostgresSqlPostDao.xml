@@ -9,7 +9,7 @@
         <id column="id" property="id"/>
         <result column="title" property="title"/>
         <result column="author" property="author"/>
-        <result column="date" property="date" javaType="java.sql.Date"/>
+        <result column="date" property="date" javaType="java.util.Date"/>
         <result column="markdown_content" property="markdownContent"/>
         <result column="categoryId" property="categoryId"/>
         <result column="html_content" property="htmlContent"/>
