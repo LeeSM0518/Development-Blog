@@ -1,4 +1,6 @@
-<%--
+<%@ page import="vo.Post" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: soengwon
   Date: 2020/02/21
@@ -6,6 +8,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Post post = (Post) request.getAttribute("post");
+    Date date = post.getDate();
+    System.out.println(date);
+    String printDate = "Posted on ";
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd, HH : mm");
+
+    printDate += format.format(date);
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +78,9 @@
             <p></p>
             <div data-brackets-id="18939" id="out" class="markdown-body">
                 <!-- markdown 입력-->
-                <h1>제목</h1>
+                <h1 class="mt-4" style="text-align: center; font-style: italic">${post.title}</h1>
+                <p style="text-align: center; font-style: italic"><%=printDate%></p>
+                ${post.htmlContent}
                 <div class="card my-4">
                     <h5 class="card-header">Leave a Comment:
                         <input type="text" name="name">
