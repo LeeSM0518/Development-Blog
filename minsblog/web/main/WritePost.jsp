@@ -41,7 +41,8 @@
                 } else {
                     document.getElementById('titleId').value = document.getElementById('titleInputId').value;
                     document.getElementById('categoryId').value = document.getElementById('categoryButtonId').innerHTML;
-                    document.getElementById('contentId').value = document.getElementById('out').innerHTML;
+                    document.getElementById('htmlContentId').value = document.getElementById('out').innerHTML;
+                    document.getElementById('markdownContentId').value = document.getElementById('code').value;
                     document.getElementById('context').submit();
                 }
             }
@@ -52,7 +53,8 @@
 <form id="context" method="post" action="add.do">
     <input id="titleId" name="title" type="hidden">
     <input id="categoryId" name="name" type="hidden">
-    <input id="contentId" name="content" type="hidden">
+    <input id="htmlContentId" name="htmlContent" type="hidden">
+    <input id="markdownContentId" name="markdownContent" type="hidden">
 </form>
 <div id="in">
     <textarea id="code" name="content"># New Document</textarea>

@@ -8,19 +8,30 @@ public class Post {
   String title;
   int author;
   Date date;
-  String content;
+  String markdownContent;
   int categoryId;
+  String htmlContent;
 
   @Override
   public String toString() {
-    return "Post{" +
-            "id=" + id +
-            ", title='" + title + '\'' +
-            ", author=" + author +
-            ", date=" + date +
-            ", content='" + content + '\'' +
-            ", categoryId=" + categoryId +
-            '}';
+    final StringBuilder sb = new StringBuilder("Post{");
+    sb.append("id=").append(id);
+    sb.append(", title='").append(title).append('\'');
+    sb.append(", author=").append(author);
+    sb.append(", date=").append(date);
+    sb.append(", markdownContent='").append(markdownContent).append('\'');
+    sb.append(", htmlContent='").append(htmlContent).append('\'');
+    sb.append(", categoryId=").append(categoryId);
+    sb.append('}');
+    return sb.toString();
+  }
+
+  public String getHtmlContent() {
+    return htmlContent;
+  }
+
+  public void setHtmlContent(String htmlContent) {
+    this.htmlContent = htmlContent;
   }
 
   public int getId() {
@@ -59,12 +70,12 @@ public class Post {
     return this;
   }
 
-  public String getContent() {
-    return content;
+  public String getMarkdownContent() {
+    return markdownContent;
   }
 
-  public Post setContent(String content) {
-    this.content = content;
+  public Post setMarkdownContent(String markdownContent) {
+    this.markdownContent = markdownContent;
     return this;
   }
 

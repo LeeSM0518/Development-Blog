@@ -10,36 +10,38 @@
         <result column="title" property="title"/>
         <result column="author" property="author"/>
         <result column="date" property="date" javaType="java.sql.Date"/>
-        <result column="content" property="content"/>
+        <result column="markdown_content" property="markdownContent"/>
         <result column="categoryId" property="categoryId"/>
+        <result column="html_content" property="htmlContent"/>
     </resultMap>
 
     <insert id="insert" parameterType="post">
-        insert into post (id, title, author, date, content, category_id)
-        values (DEFAULT, #{title}, #{author}, now(), #{content}, #{categoryId})
+        insert into post (id, title, author, date, markdown_content, category_id, html_content)
+        values (DEFAULT, #{title}, #{author}, now(), #{markdownContent}, #{categoryId}, #{htmlContent})
     </insert>
 
     <select id="selectList" resultMap="postResultMap">
-        select id, title, author, date, content, category_id
+        select id, title, author, date, markdown_content, category_id, html_content
         from post
         order by date desc
     </select>
 
     <select id="selectOne" parameterType="int" resultMap="postResultMap">
-        select id, title, author, date, content, category_id
+        select id, title, author, date, markdown_content, category_id, html_content
         from post
         where id=#{value}
     </select>
 
     <select id="selectListByCategoryId" parameterType="int" resultMap="postResultMap">
-        select id, title, author, date, content, category_id
+        select id, title, author, date, markdown_content, category_id, html_content
         from post
         where category_id=#{value}
     </select>
 
     <update id="update" parameterType="post">
         update post
-        set title=#{title}, author=#{author}, date=now(), content=#{content}, category_id=#{categoryId}
+        set title=#{title}, author=#{author}, date=now(), markdown_content=#{markdownContent}, category_id=#{categoryId},
+        html_content=#{htmlContent}
         where id=#{id}
     </update>
 
