@@ -4,7 +4,6 @@ import annotation.Component;
 import bind.DataBinding;
 import dao.CategoryDao;
 import dao.PostDao;
-import javafx.geometry.Pos;
 import vo.Category;
 import vo.Member;
 import vo.Post;

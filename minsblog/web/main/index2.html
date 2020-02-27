@@ -25,6 +25,8 @@
     save.onclick = function () {
         var out = document.getElementById('out');
         document.getElementById('returnContext').value = out.value;
+        document.getElementById('code').innerText =              document.getElementById('out').innerHTML;
+        console.log(document.getElementById('code').innerText);
         document.getElementById('context').submit();
     }
     </script>

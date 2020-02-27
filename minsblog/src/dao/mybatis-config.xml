@@ -19,7 +19,7 @@
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="JNDI">
-                <property name="data_source" value="java:comp/env/jdbc/postgresql"/>
+                <property name="data_source" value="java:comp/env/jdbc/minsblog"/>
             </dataSource>
         </environment>
     </environments>
