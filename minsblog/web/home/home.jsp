@@ -1,4 +1,4 @@
-<%--
+<%@ page import="vo.Post" %><%--
   Created by IntelliJ IDEA.
   User: sangminlee
   Date: 2020/01/10
@@ -83,7 +83,8 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <h2 class="card-title">${post.title}</h2>
-                        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                        <a href="${pageContext.request.contextPath}/post/read.do?postid=${post.id}"
+                           class="btn btn-primary">Read More &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
                         Posted on ${post.date}
