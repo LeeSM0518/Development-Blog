@@ -5,11 +5,7 @@ import bind.DataBinding;
 import dao.PostgresSqlCategoryDao;
 import dao.PostgresSqlPostDao;
 import vo.Category;
-import vo.Post;
 
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Component("/category/list.do")
@@ -36,8 +32,6 @@ public class CategoryAndPostListController implements DataBinding, Controller {
       int categoryIdInt = categoryDao.selectOne(category).getId();
       model.put("posts", postgresSqlPostDao.selectListByCategoryId(categoryIdInt));
     }
-    List<Post> posts = (List<Post>) model.get("posts");
-    System.out.println(posts);
     model.put("categories", categoryDao.selectList());
     return "/home/home.jsp";
   }
