@@ -28,6 +28,7 @@
         <mapper resource="dao/PostgresSqlMemberDao.xml"/>
         <mapper resource="dao/PostgresSqlCategoryDao.xml"/>
         <mapper resource="dao/PostgresSqlPostDao.xml"/>
+        <mapper resource="dao/PostgresSqlCommentDao.xml"/>
     </mappers>
 
 </configuration>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--태그 규칙을 정의한 DTD 선언-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.CommentDao">
+    <resultMap id="commentResultMap" type="comment">
+        <id column="id" property="id"/>
+        <result column="writer" property="writer"/>
+        <result column="date" property="date" javaType="java.util.Date"/>
+        <result column="content" property="content"/>
+        <result column="post_id" property="postId"/>
+    </resultMap>
+
+    <select id="selectListOnPost" parameterType="int" resultMap="commentResultMap">
+        select id, writer, date, content, post_id
+        from comment
+        where post_id = #{value}
+        order by date desc
+    </select>
+
+    <insert id="insert" parameterType="comment">
+        insert into comment (id, writer, date, content, post_id)
+        values (DEFAULT, #{writer}, now(), #{content}, #{postId})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        delete from comment
+        where id=#{value}
+    </delete>
+
+</mapper>

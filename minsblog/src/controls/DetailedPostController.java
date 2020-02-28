@@ -2,6 +2,7 @@ package controls;
 
 import annotation.Component;
 import bind.DataBinding;
+import dao.PostgresSqlCommentDao;
 import dao.PostgresSqlPostDao;
 
 import java.util.Map;
@@ -10,18 +11,21 @@ import java.util.Map;
 public class DetailedPostController implements Controller, DataBinding {
 
   PostgresSqlPostDao postDao;
+  PostgresSqlCommentDao commentDao;
 
   public void setPostDao(PostgresSqlPostDao postDao) {
     this.postDao = postDao;
   }
 
+  public void setCommentDao(PostgresSqlCommentDao commentDao) {
+    this.commentDao = commentDao;
+  }
+
   @Override
   public String execute(Map<String, Object> model) throws Exception {
-    String postId = (String) model.get("postid");
-    model.put("post", postDao.selectOne(Integer.parseInt(postId)));
-    System.out.println("date");
-    System.out.println(postDao.selectOne(Integer.parseInt(postId)).getDate());
-    System.out.println();
+    int postId = Integer.parseInt(((String) model.get("postid")));
+    model.put("post", postDao.selectOne(postId));
+    model.put("comments", commentDao.selectListOnPost(postId));
     return "/main/ReadMorePost.jsp";
   }
 

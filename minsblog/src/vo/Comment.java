@@ -54,4 +54,16 @@ public class Comment {
     this.postId = postId;
     return this;
   }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("Comment{");
+    sb.append("id=").append(id);
+    sb.append(", writer='").append(writer).append('\'');
+    sb.append(", date=").append(date);
+    sb.append(", content='").append(content).append('\'');
+    sb.append(", postId=").append(postId);
+    sb.append('}');
+    return sb.toString();
+  }
 }

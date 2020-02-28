@@ -1,6 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="vo.Post" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %><%--
+<%@ page import="java.util.Date" %>
+<%@ page import="vo.Comment" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: soengwon
   Date: 2020/02/21
@@ -14,6 +17,8 @@
     System.out.println(date);
     String printDate = "Posted on ";
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd, HH : mm");
+
+    int thisPostId = post.getId();
 
     printDate += format.format(date);
 %>
@@ -30,23 +35,40 @@
     <title>Min's TIL Blog</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/main/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="lib/material-icons.css">
-    <link rel="stylesheet" href="lib/base16-light.css">
-    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="lib/default.css">
-    <link rel="stylesheet" href="lib/github-markdown.css">
-    <link rel="stylesheet" href="lib/spell-checker.min.css">
-    <link rel="stylesheet" href="lib/sweetalert.css">
+    <link rel="icon" type="/main/image/png" href="favicon.png">
+    <link rel="stylesheet" href="/main/lib/material-icons.css">
+    <link rel="stylesheet" href="/main/lib/base16-light.css">
+    <link rel="stylesheet" href="/main/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="/main/lib/default.css">
+    <link rel="stylesheet" href="/main/lib/github-markdown.css">
+    <link rel="stylesheet" href="/main/lib/spell-checker.min.css">
+    <link rel="stylesheet" href="/main/lib/sweetalert.css">
 
     <!-- Custom styles for this template -->
-    <link href="css/blog-post.css" rel="stylesheet">
-
+    <link href="/main/css/blog-post.css" rel="stylesheet">
+    <script>
+        window.onload = function () {
+            var submitButton = document.getElementById('submitButton');
+            submitButton.onclick = function () {
+                if (document.getElementById('writerId').value === '') {
+                    alert('작성자 이름을 반드시 입력해주세요.');
+                } else if (document.getElementById('contentId').value === '') {
+                    alert('내용을 반드시 입력해주세요.');
+                } else {
+                    document.getElementById('writerRealId').value =
+                        document.getElementById('writerId').value;
+                    document.getElementById('contentRealId').value =
+                        document.getElementById('contentId').value;
+                    document.getElementById('context').submit();
+                }
+            }
+        };
+    </script>
 </head>
 
 <body>
@@ -61,7 +83,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" href="${pageContext.request.contextPath}/category/list.do?cid=Main">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -76,70 +98,59 @@
         <!-- Post Content Column -->
         <div class="col-lg-8">
             <p></p>
+            <h1 class="mt-4" style="text-align: center; font-style: italic">${post.title}</h1>
+            <p style="text-align: center; font-style: italic"><%=printDate%>
+            </p>
+
+            <hr>
+
             <div data-brackets-id="18939" id="out" class="markdown-body">
+
+                <form id="context" action="/comment/add.do" method="post">
+                    <input id="contentRealId" name="content" type="hidden">
+                    <input id="postRealId" name="postId" value="<%=thisPostId%>" type="hidden">
+                    <input id="writerRealId" name="writer" type="hidden">
+                </form>
                 <!-- markdown 입력-->
-                <h1 class="mt-4" style="text-align: center; font-style: italic">${post.title}</h1>
-                <p style="text-align: center; font-style: italic"><%=printDate%></p>
-                ${post.htmlContent}
+                <div style="margin-bottom: 3cm">
+                    ${post.htmlContent}
+
+                </div>
                 <div class="card my-4">
-                    <h5 class="card-header">Leave a Comment:
-                        <input type="text" name="name">
+                    <h5 class="card-header">작성자 :
+                        <input id="writerId" type="text" name="writer">
                     </h5>
                     <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <textarea class="form-control" rows="3"></textarea>
+                        <div class="form-group">
+                            <textarea id="contentId" class="form-control" rows="3" name="content"></textarea>
+                        </div>
+                        <button id="submitButton" type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                <div style="margin-bottom: 3cm">
+                    <c:forEach var="comment" items="${comments}">
+                        <div class="media mb-5">
+                            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                            <div class="media-body">
+                                <h5 class="mt-0">${comment.writer}
+                                    <form action="/comment/delete.do" method="post">
+                                        <input name="deleteCommentId" type="hidden" value="${comment.id}">
+                                        <input name="deleteCommentOnPostId" type="hidden" value="${comment.postId}">
+                                        <button
+                                           class="btn btn-danger btn-circle btn-sm  ml-4"
+                                           style="background-color: #dc3545;">
+                                            <i class="fas fa-trash" style="color: #fff"></i>
+                                        </button>
+                                    </form>
+                                </h5>
+                                <p style="font-style: italic; font-size: small;">Posted on ${comment.date}</p>
+                                    ${comment.content}
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+                        </div>
+                    </c:forEach>
                 </div>
-                <div class="media mb-4">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                    <div class="media-body">
-                        <h5 class="mt-0">Commenter Name
-                            <a href="#" class="btn btn-danger btn-circle btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
-
-                <!-- Comment with nested comments -->
-                <div class="media mb-4">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                    <div class="media-body">
-                        <h5 class="mt-0">Commenter Name
-                            <a href="#" class="btn btn-danger btn-circle btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </a></h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
-
             </div>
 
-            <!-- Sidebar Widgets Column -->
-            <div class="col-md-4">
-                <!-- Side Widget -->
-                <div class="card my-4">
-                    <h5 class="card-header">Side Widget</h5>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-info btn-circle btn-circle">
-                            <i class="fas fa-info-circle"></i>
-                        </a>
-                        <a href="#" class="btn btn-danger btn-circle btn-circle">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 </div>
@@ -152,7 +163,7 @@
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/main/vendor/jquery/jquery.min.js"></script>
+<script src="/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

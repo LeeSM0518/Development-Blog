@@ -28,10 +28,42 @@
 
 ## 댓글(Comment)
 
-* **/post/*/comment/add.do?id={post-id}**
+* **/comment/add.do?id={post-id}**
   * 해당 댓글 id의 댓글 추가 => /post/read.do?id={post-id} 이동
-* **/post/*/comment/delete.do?id={post-id}**
+    * **CommentAddController.java**
+* **/comment/delete.do?id={post-id}**
   * 해당 댓글 id의 댓글 삭제 => /post/read.do?id={post-id} 이동
+    * **CommentDeleteController.java**
+
+<br>
+
+* **PostgresSqlCommentDao.xml**
+
+  ```xml
+  <select id="selectListOnPost" parameterType="int" resultMap="commentResultMap">
+    select id, writer, date, content, post_id
+    from comment
+    where post_id=#{value}
+  </select>
+  
+  <insert id="insert" parameterType="comment">
+    insert into comment (id, writer, date, content, post_id)
+    values (DEFAULT, #{writer}, now(), #{content}, #{postId})
+  </insert>
+    
+  <delete id="delete" parameterType="int">
+    delete from comment
+    where id=#{value}
+  </delete>
+  ```
+
+* **CommentDao.java**
+
+  ```java
+  List<Comment> selectListOnPost(int postId) throws Exception;
+  int insert(Comment comment) throws Exception;
+  int delete(int id) throws Exception;
+  ```
 
 <br>
 
