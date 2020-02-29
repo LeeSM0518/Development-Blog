@@ -75,7 +75,8 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Min's TIL Blog</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/category/list.do?cid=Main">
+            Min's TIL Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -130,17 +131,20 @@
                 <div style="margin-bottom: 3cm">
                     <c:forEach var="comment" items="${comments}">
                         <div class="media mb-5">
-                            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                            <img class="d-flex mr-3 rounded-circle" src="${pageContext.request.contextPath}/main/user.png"
+                                 alt="" width="50em">
                             <div class="media-body">
                                 <h5 class="mt-0">${comment.writer}
                                     <form action="/comment/delete.do" method="post">
                                         <input name="deleteCommentId" type="hidden" value="${comment.id}">
                                         <input name="deleteCommentOnPostId" type="hidden" value="${comment.postId}">
-                                        <button
-                                           class="btn btn-danger btn-circle btn-sm  ml-4"
-                                           style="background-color: #dc3545;">
-                                            <i class="fas fa-trash" style="color: #fff"></i>
-                                        </button>
+                                        <c:if test="${!empty sessionScope.adminMember}">
+                                            <button
+                                                    class="btn btn-danger btn-circle btn-sm  ml-4"
+                                                    style="background-color: #dc3545;">
+                                                <i class="fas fa-trash" style="color: #fff"></i>
+                                            </button>
+                                        </c:if>
                                     </form>
                                 </h5>
                                 <p style="font-style: italic; font-size: small;">Posted on ${comment.date}</p>
