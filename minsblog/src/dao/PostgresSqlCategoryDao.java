@@ -58,4 +58,10 @@ public class PostgresSqlCategoryDao implements CategoryDao {
     }
   }
 
+  @Override
+  public Category selectOneById(Category category) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("dao.CategoryDao.selectOneById", category);
+    }
+  }
 }

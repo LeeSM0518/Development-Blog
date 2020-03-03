@@ -27,6 +27,9 @@
         function setValue(target) {
             document.getElementById('categoryButtonId').innerHTML = target.innerHTML;
         }
+
+        document.getElementById('code').innerText = ${post.markdownContent};
+        document.getElementById('out').innerHTML = ${post.htmlContent};
     </script>
     <script>
         window.onload = function () {
@@ -40,7 +43,7 @@
                     document.getElementById('titleId').value = document.getElementById('titleInputId').value;
                     document.getElementById('categoryId').value = document.getElementById('categoryButtonId').innerHTML;
                     document.getElementById('htmlContentId').value = document.getElementById('out').innerHTML;
-                    document.getElementById('markdownContentId').value = document.getElementById('code').innerHTML;
+                    document.getElementById('markdownContentId').value = document.getElementById('code').value;
                     document.getElementById('context').submit();
                 }
             }
@@ -55,7 +58,7 @@
     <input id="markdownContentId" name="markdownContent" type="hidden">
 </form>
 <div id="in">
-    <textarea id="code" name="content"># New Document</textarea>
+    <textarea id="code" name="content"></textarea>
 </div>
 <div id="out" class="markdown-body"></div>
 <div id="menu">
@@ -93,9 +96,9 @@
             <div class="input-group">
                 <input id="titleInputId" type="text" class="form-control bg-light border-30small" placeholder="제목"
                        aria-label="Search"
-                       aria-describedby="basic-addon2">
+                       aria-describedby="basic-addon2" value="${post.title}">
                 <button id="categoryButtonId" class="btn btn-primary dropdown-toggle" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${requestScope.originCategory}
                 </button>
                 <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                     <c:forEach var="category" items="${categories}">
@@ -108,6 +111,7 @@
 </div>
 <script src="/main/vendor/jquery/jquery.min.js"></script>
 <script src="/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/main/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/main/lib/markdown-it.js"></script>
 <script src="/main/lib/markdown-it-footnote.js"></script>
 <script src="/main/lib/highlight.pack.js"></script>

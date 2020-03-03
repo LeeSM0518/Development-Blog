@@ -12,5 +12,6 @@ public interface CategoryDao {
   int delete(Category category) throws Exception;
   Category selectOne(Category category) throws Exception;
   int update(HashMap<String, Object> paramMap) throws Exception;
+  Category selectOneById(Category category) throws Exception;
 
 }

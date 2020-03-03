@@ -29,25 +29,30 @@
     <select id="selectOne" parameterType="int" resultMap="postResultMap">
         select id, title, author, date, markdown_content, category_id, html_content
         from post
-        where id=#{value}
+        where id = #{value}
     </select>
 
     <select id="selectListByCategoryId" parameterType="int" resultMap="postResultMap">
         select id, title, author, date, markdown_content, category_id, html_content
         from post
-        where category_id=#{value}
+        where category_id = #{value}
     </select>
 
     <update id="update" parameterType="post">
         update post
-        set title=#{title}, author=#{author}, date=now(), markdown_content=#{markdownContent}, category_id=#{categoryId},
-        html_content=#{htmlContent}
-        where id=#{id}
+        set title            = #{title},
+            author           = #{author},
+            date             = now(),
+            markdown_content = #{markdownContent},
+            category_id      = #{categoryId},
+            html_content     = #{htmlContent}
+        where id = #{id}
     </update>
 
     <delete id="delete" parameterType="int">
-        delete from post
-        where id=#{value}
+        delete
+        from post
+        where id = #{value}
     </delete>
 
 </mapper>

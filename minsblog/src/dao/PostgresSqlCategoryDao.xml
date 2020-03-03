@@ -23,18 +23,25 @@
     <select id="selectOne" parameterType="category" resultMap="categoryResultMap">
         select id, name
         from category
-        where name=#{name}
+        where name = #{name}
+    </select>
+
+    <select id="selectOneById" parameterType="category" resultMap="categoryResultMap">
+        select id, name
+        from category
+        where id = #{id}
     </select>
 
     <update id="update" parameterType="map">
         update category
         set name=#{changeName}
-        where name=#{beforeName}
+        where name = #{beforeName}
     </update>
 
     <delete id="delete" parameterType="category">
-        delete from category
-        where name=#{name}
+        delete
+        from category
+        where name = #{name}
     </delete>
 
 </mapper>
