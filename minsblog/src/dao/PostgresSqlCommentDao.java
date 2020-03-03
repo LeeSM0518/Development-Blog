@@ -40,4 +40,14 @@ public class PostgresSqlCommentDao implements CommentDao {
       return count;
     }
   }
+
+  @Override
+  public int deleteByPostId(int id) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      int count = sqlSession.delete("dao.CommentDao.deleteByPostId", id);
+      sqlSession.commit();
+      return count;
+    }
+  }
+
 }

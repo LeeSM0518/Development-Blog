@@ -26,8 +26,15 @@
     </insert>
 
     <delete id="delete" parameterType="int">
-        delete from comment
-        where id=#{value}
+        delete
+        from comment
+        where id = #{value}
+    </delete>
+
+    <delete id="deleteByPostId" parameterType="int">
+        delete
+        from comment
+        where post_id = #{value}
     </delete>
 
 </mapper>

@@ -66,7 +66,19 @@
                         document.getElementById('contentId').value;
                     document.getElementById('context').submit();
                 }
-            }
+            };
+
+            document.getElementById('postInfoId').onclick = function () {
+                var infoForm = document.getElementById('postInfoFormId');
+                <%--infoForm.value = ${comment.postId};--%>
+                infoForm.submit();
+            };
+
+            document.getElementById('postDeleteId').onclick = function () {
+                var deleteForm = document.getElementById('postDeleteFormId');
+                <%--deleteForm.value = ${comment.postId};--%>
+                deleteForm.submit();
+            };
         };
     </script>
 </head>
@@ -131,7 +143,8 @@
                 <div style="margin-bottom: 3cm">
                     <c:forEach var="comment" items="${comments}">
                         <div class="media mb-5">
-                            <img class="d-flex mr-3 rounded-circle" src="${pageContext.request.contextPath}/main/user.png"
+                            <img class="d-flex mr-3 rounded-circle"
+                                 src="${pageContext.request.contextPath}/main/user.png"
                                  alt="" width="50em">
                             <div class="media-body">
                                 <h5 class="mt-0">${comment.writer}
@@ -148,10 +161,32 @@
                                     </form>
                                 </h5>
                                 <p style="font-style: italic; font-size: small;">Posted on ${comment.date}</p>
-                                    ${comment.content}
+                                <div>
+                                        ${comment.content}
+                                </div>
                             </div>
                         </div>
                     </c:forEach>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Side Widget</h5>
+                <div class="card-body">
+                    <form id="postInfoFormId" action="/post/info.do" method="post">
+                        <input name="id" type="hidden" value="${post.id}">
+                    </form>
+                    <form id="postDeleteFormId" action="/post/delete.do" method="post">
+                        <input name="id" type="hidden" value="${post.id}">
+                    </form>
+                    <a id="postInfoId" class="btn btn-info btn-circle btn-circle">
+                        <i class="fas fa-info-circle" style="color: #fff"></i>
+                    </a>
+                    <a id="postDeleteId" class="btn btn-danger btn-circle btn-circle">
+                        <i class="fas fa-trash" style="color: #fff"></i>
+                    </a>
                 </div>
             </div>
 
