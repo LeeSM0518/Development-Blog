@@ -64,4 +64,11 @@ public class PostgresSqlPostDao implements PostDao {
     }
   }
 
+  @Override
+  public List<Post> selectListByTitle(Post post) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("dao.PostDao.selectListByTitle", post);
+    }
+  }
+
 }

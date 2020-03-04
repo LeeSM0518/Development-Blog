@@ -12,7 +12,7 @@
 </head>
 <body>
     <%
-        response.sendRedirect("/auth/login.do");
+        response.sendRedirect("/category/list.do?cid=Main");
     %>
 </body>
 </html>

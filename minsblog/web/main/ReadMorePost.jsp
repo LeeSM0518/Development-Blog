@@ -170,6 +170,7 @@
                 </div>
             </div>
         </div>
+        <c:if test="${!empty sessionScope.adminMember}">
         <div class="col-md-4">
             <!-- Side Widget -->
             <div class="card my-4">
@@ -189,14 +190,14 @@
                     </a>
                 </div>
             </div>
-
         </div>
+        </c:if>
     </div>
 </div>
 
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        <p class="m-0 text-center text-white">Copyright &copy; <a href="https://github.com/LeeSM0518">sangmin</a> 2020</p>
     </div>
     <!-- /.container -->
 </footer>

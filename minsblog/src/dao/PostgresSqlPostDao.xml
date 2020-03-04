@@ -11,7 +11,7 @@
         <result column="author" property="author"/>
         <result column="date" property="date" javaType="java.util.Date"/>
         <result column="markdown_content" property="markdownContent"/>
-        <result column="categoryId" property="categoryId"/>
+        <result column="category_id" property="categoryId"/>
         <result column="html_content" property="htmlContent"/>
     </resultMap>
 
@@ -23,6 +23,13 @@
     <select id="selectList" resultMap="postResultMap">
         select id, title, author, date, markdown_content, category_id, html_content
         from post
+        order by date desc
+    </select>
+
+    <select id="selectListByTitle" parameterType="post" resultMap="postResultMap">
+        select id, title, author, date, markdown_content, category_id, html_content
+        from post
+        where title LIKE #{title}
         order by date desc
     </select>
 

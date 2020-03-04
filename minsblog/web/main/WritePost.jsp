@@ -40,7 +40,7 @@
                     document.getElementById('titleId').value = document.getElementById('titleInputId').value;
                     document.getElementById('categoryId').value = document.getElementById('categoryButtonId').innerHTML;
                     document.getElementById('htmlContentId').value = document.getElementById('out').innerHTML;
-                    document.getElementById('markdownContentId').value = document.getElementById('code').innerHTML;
+                    document.getElementById('markdownContentId').value = editor.getValue();
                     document.getElementById('context').submit();
                 }
             }
@@ -55,7 +55,7 @@
     <input id="markdownContentId" name="markdownContent" type="hidden">
 </form>
 <div id="in">
-    <textarea id="code" name="content"># New Document</textarea>
+    <textarea id="code" name="content"></textarea>
 </div>
 <div id="out" class="markdown-body"></div>
 <div id="menu">

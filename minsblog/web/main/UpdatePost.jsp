@@ -22,14 +22,11 @@
     <link rel="stylesheet" href="/main/index.css">
     <!-- Custom styles for this template -->
     <link href="/main/css/sb-admin-2.min.css" rel="stylesheet">
-
     <script>
         function setValue(target) {
             document.getElementById('categoryButtonId').innerHTML = target.innerHTML;
         }
 
-        document.getElementById('code').innerText = ${post.markdownContent};
-        document.getElementById('out').innerHTML = ${post.htmlContent};
     </script>
     <script>
         window.onload = function () {
@@ -43,24 +40,28 @@
                     document.getElementById('titleId').value = document.getElementById('titleInputId').value;
                     document.getElementById('categoryId').value = document.getElementById('categoryButtonId').innerHTML;
                     document.getElementById('htmlContentId').value = document.getElementById('out').innerHTML;
-                    document.getElementById('markdownContentId').value = document.getElementById('code').value;
+                    document.getElementById('markdownContentId').value = editor.getValue();
                     document.getElementById('context').submit();
                 }
-            }
+            };
         };
     </script>
 </head>
 <body id="toplevel">
-<form id="context" method="post" action="add.do">
+<form id="context" method="post" action="info.do">
+    <input name="id" value="${post.id}">
+    <input name="author" value="${sessionScope.adminMember.id}">
     <input id="titleId" name="title" type="hidden">
     <input id="categoryId" name="name" type="hidden">
     <input id="htmlContentId" name="htmlContent" type="hidden">
     <input id="markdownContentId" name="markdownContent" type="hidden">
 </form>
 <div id="in">
-    <textarea id="code" name="content"></textarea>
+    <textarea id="code" name="content">${post.markdownContent}</textarea>
 </div>
-<div id="out" class="markdown-body"></div>
+<div id="out" class="markdown-body">
+    ${post.htmlContent}
+</div>
 <div id="menu">
     <span>Save As</span>
     <div id="saveas-markdown">
@@ -98,7 +99,8 @@
                        aria-label="Search"
                        aria-describedby="basic-addon2" value="${post.title}">
                 <button id="categoryButtonId" class="btn btn-primary dropdown-toggle" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${requestScope.originCategory}
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ${originCategory.name}
                 </button>
                 <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                     <c:forEach var="category" items="${categories}">
@@ -109,14 +111,14 @@
         </form>
     </div>
 </div>
+</body>
+<script src="/main/codemirror/lib/codemirror.js"></script>
 <script src="/main/vendor/jquery/jquery.min.js"></script>
 <script src="/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/main/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/main/lib/markdown-it.js"></script>
 <script src="/main/lib/markdown-it-footnote.js"></script>
 <script src="/main/lib/highlight.pack.js"></script>
 <script src="/main/lib/emojify.js"></script>
-<script src="/main/codemirror/lib/codemirror.js"></script>
 <script src="/main/codemirror/overlay.js"></script>
 <script src="/main/codemirror/xml/xml.js"></script>
 <script src="/main/codemirror/markdown/markdown.js"></script>
@@ -130,5 +132,4 @@
 <script src="/main/lib/rawdeflate.js"></script>
 <script src="/main/lib/sweetalert.min.js"></script>
 <script src="/main/index.js"></script>
-</body>
 </html>

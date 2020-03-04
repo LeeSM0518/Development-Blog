@@ -37,7 +37,6 @@ public class PostAddController implements Controller, DataBinding {
       Member member = (Member) session.getAttribute("adminMember");
       post.setAuthor(member.getId());
       post.setCategoryId(categoryDao.selectOne(category).getId());
-      System.out.println(post);
       postDao.insert(post);
       return "redirect:/category/list.do?cid=Main";
     }

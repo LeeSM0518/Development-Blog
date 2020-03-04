@@ -13,5 +13,6 @@ public interface PostDao {
   int insert(Post post) throws Exception;
   int update(Post post) throws Exception;
   int delete(int id) throws Exception;
+  List<Post> selectListByTitle(Post post) throws Exception;
 
 }

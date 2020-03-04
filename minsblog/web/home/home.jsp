@@ -92,16 +92,6 @@
                 </div>
             </c:forEach>
 
-            <!-- Pagination -->
-            <ul class="pagination justify-content-center mb-4">
-                <li class="page-item">
-                    <a class="page-link" href="#">&larr; Older</a>
-                </li>
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">Newer &rarr;</a>
-                </li>
-            </ul>
-
         </div>
 
         <!-- Sidebar Widgets Column -->
@@ -112,10 +102,12 @@
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
+                        <form action="/category/list.do" method="post">
+                            <input name="searchPost" type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-secondary" type="button">Go!</button>
+                            </span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -219,7 +211,8 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Min's Blog 2019</p>
+        <p class="m-0 text-center text-white">Copyright &copy;
+            <a href="https://github.com/LeeSM0518">sangmin</a> 2020</p>
     </div>
     <!-- /.container -->
 </footer>
@@ -229,13 +222,6 @@
 <script src="/home/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Custom scripts for all pages-->
 <script src="/home/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="/home/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/home/js/demo/chart-area-demo.js"></script>
-<script src="/home/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

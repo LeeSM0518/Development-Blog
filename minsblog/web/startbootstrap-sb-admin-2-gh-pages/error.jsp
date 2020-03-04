@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - 404</title>
+    <title>Min's TIL Blog</title>
 
     <!-- Custom fonts for this template-->
     <link href="/startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,9 +44,9 @@
                 <div class="text-center">
                     <br>
                     <div class="error mx-auto" data-text="404">404</div>
-                    <p class="lead text-gray-800 mb-5">Page Not Found</p>
-                    <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-                    <a href="index.html">&larr; Back to Dashboard</a>
+                    <p class="lead text-gray-800 mb-5">잘못된 접근입니다.</p>
+                    <p class="text-gray-500 mb-0">홈페이지로 돌아가주세요...</p>
+                    <a href="${pageContext.request.contextPath}/category/list.do?cid=Main">&larr; Back to Home</a>
                 </div>
 
             </div>
@@ -59,7 +59,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2019</span>
+                    <span>Copyright &copy; <a href="https://github.com/LeeSM0518">sangmin</a> 2020</span>
                 </div>
             </div>
         </footer>

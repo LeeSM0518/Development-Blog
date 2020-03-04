@@ -36,16 +36,19 @@ public class PostUpdateController implements DataBinding, Controller {
     Post post = (Post) model.get("post");
     int postId = post.getId();
     if (post.getTitle() == null) {
-      // TODO Markdown 내용과 HTML 내용 삽입하는거 구현
+      Post originPost = postDao.selectOne(postId);
       Category category = new Category();
-      category.setId(post.getCategoryId());
+      category.setId(originPost.getCategoryId());
       model.put("originCategory", categoryDao.selectOneById(category));
-      model.put("post", postDao.selectOne(postId));
+      model.put("post", originPost);
       model.put("categories", categoryDao.selectList());
       return "/main/UpdatePost.jsp";
     } else {
+      Category category = (Category) model.get("category");
+      category.setName(category.getName().trim());
+      post.setCategoryId(categoryDao.selectOne(category).getId());
       postDao.update(post);
-      return "redirect:/post/read.do?postId=" + postId;
+      return "redirect:/post/read.do?postid=" + postId;
     }
   }
 

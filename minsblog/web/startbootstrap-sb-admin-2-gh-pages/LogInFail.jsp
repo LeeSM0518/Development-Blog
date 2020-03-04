@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - 404</title>
+    <title>Min's Blog</title>
 
     <!-- Custom fonts for this template-->
     <link href="/startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +57,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Min's TIL Blog 2019</span>
+                    <span>Copyright &copy; <a href="https://github.com/LeeSM0518">sangmin</a> 2020</span>
                 </div>
             </div>
         </footer>
