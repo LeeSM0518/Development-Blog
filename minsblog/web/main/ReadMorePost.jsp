@@ -23,7 +23,7 @@
     printDate += format.format(date);
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko-KR">
 
 <head>
 
