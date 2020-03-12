@@ -10,6 +10,18 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
 <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145824378-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-145824378-2');
+    </script>
+
+
     <title>Min's TIL Blog</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="/main/lib/material-icons.css">
