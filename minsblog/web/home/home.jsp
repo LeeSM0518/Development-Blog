@@ -22,12 +22,41 @@
         gtag('config', 'UA-145824378-2');
     </script>
 
+    <title class="browser-title">Min's TIL Blog</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Min's TIL Blog</title>
+    <!-- canonical -->
+    <link rel="canonical" href="https://minsblog.wisoft.io">
+
+    <!-- SEO -->
+    <meta name="title" content="Min's TIL Blog" class="meta-title">
+    <meta name="description" content="개발자를 꿈꾸는 이상민의 TIL 블로그" class="meta-desc">
+    <meta name="keywords" content="와이소프트, Wisoft, WISOFT, wisoft, wisoftlab, 이상민, sangmin, bolg, 블로그, 자바, 개발자, developments, java, css, 백엔드">
+    <meta name="apple-mobile-web-app-title" content="Min's TIL Blog">
+    <link rel="image_src" href="https://avatars3.githubusercontent.com/u/43431081?s=460&v=4">
+    <!-- //SEO -->
+
+    <!-- SNS Share ======================================= -->
+    <!-- FB -->
+    <meta property="og:site_name" content="Min's TIL Blog" class="meta-title">
+    <meta property="og:title" content="Min's TIL Blog" class="meta-title">
+    <meta property="og:description" content="개발자를 꿈꾸는 이상민의 TIL 블로그" class="meta-desc">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="KR">
+    <meta property="og:url" content="https://minsblog.wisoft.io">
+    <meta property="og:image" content="https://avatars3.githubusercontent.com/u/43431081?s=460&v=4">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- TW -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Min's TIL Blog" class="meta-title">
+    <meta name="twitter:description" content="개발자를 꿈꾸는 이상민의 TIL 블로그" class="meta-desc">
+    <meta name="twitter:url" content="https://minsblog.wisoft.io">
+    <meta name="twitter:image" content="https://avatars3.githubusercontent.com/u/43431081?s=460&v=4">
+    <!-- //SNS Share ======================================= -->
 
     <!-- Bootstrap core CSS -->
     <link href="/home/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
