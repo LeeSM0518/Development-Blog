@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="ko-KR">
 <head>
     <title>Min's TIL Blog</title>
     <link rel="icon" type="image/png" href="favicon.png">
