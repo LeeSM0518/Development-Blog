@@ -102,11 +102,10 @@
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
                     <div class="input-group">
-                        <form action="/category/list.do" method="post">
-                            <input name="searchPost" type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-secondary" type="button">Go!</button>
-                            </span>
+                        <form action="/category/list.do" method="post" class="form-inline">
+                            <input name="searchPost" type="text" class="form-control" placeholder="Search for..."
+                            >
+                            <button type="submit" class="btn btn-secondary">Go!</button>
                         </form>
                     </div>
                 </div>
