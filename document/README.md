@@ -14,6 +14,7 @@
 ## DB
 
 * [1차 DB 설계](https://github.com/LeeSM0518/Development-Blog/blob/master/document/db/db1.md)
+* [2차 DB 설계](https://github.com/LeeSM0518/Development-Blog/blob/master/document/db/db2.md)
 
 ## API
 
