@@ -77,9 +77,9 @@ Post(게시글)는 관리자만 CRUD가 가능하고 방문자는 읽는 것만 
 
 <br>
 
-## Coment
+## Comment
 
-Coment(댓글)는 Post에 GUSET, ADMIN 모두 작성할 수 있다.
+Comment(댓글)는 Post에 GUSET, ADMIN 모두 작성할 수 있다.
 
 | 번호 | 요구사항  | 상세내용               |
 | ---- | --------- | ---------------------- |
